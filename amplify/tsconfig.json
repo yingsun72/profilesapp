@@ -14,5 +14,8 @@
       ]
     }
   },
-"include": ["src/**/*.ts", "*.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"]
+"include": [
+    "amplify/data/resource.ts",
+    "amplify/function/api-function/resource.ts",
+  ]
 }
