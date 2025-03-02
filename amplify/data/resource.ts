@@ -7,7 +7,12 @@ const schema = a
       .model({
         email: a.string(),
         profileOwner: a.string(),
-        adLocations: a.hasMany('AdLocation'),  // One-to-many relationship with AdLocation
+        adLocations: a.hasMany('AdLocation', {
+          relationName: 'UserProfileAdLocations',  // Add this
+          indexName: 'byUserProfile',  // Add this
+          sourceField: 'profileOwner',  // Add this
+          targetField: 'profileOwner'   // Add this
+        }),
       })
       .authorization((allow) => [
         allow.ownerDefinedIn("profileOwner"),
@@ -21,9 +26,10 @@ const schema = a
         scanDate: a.datetime(),
         qrCode: a.string(),
         userProfile: a.belongsTo('UserProfile', {
+          relationName: 'UserProfileAdLocations',  // Add this
           targetNames: ['profileOwner'],
           targetFields: ['profileOwner']
-        }),  // Relationship back to UserProfile
+        }),
       })
       .authorization((allow) => [
         allow.ownerDefinedIn("profileOwner"),
@@ -42,4 +48,3 @@ export const data = defineData({
     },
   },
 });
-
