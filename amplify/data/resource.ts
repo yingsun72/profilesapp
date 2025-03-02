@@ -7,10 +7,7 @@ const schema = a
       .model({
         email: a.string(),
         profileOwner: a.string(),
-        adLocations: a.hasMany('AdLocation', {
-          indexName: 'byUserProfile',
-          fields: ['profileOwner']  // Changed this line
-        }),
+        adLocations: a.hasMany('AdLocation'),  // Simplified relationship
       })
       .authorization((allow) => [
         allow.ownerDefinedIn("profileOwner"),
@@ -23,9 +20,8 @@ const schema = a
         location: a.string(),
         scanDate: a.datetime(),
         qrCode: a.string(),
-        userProfile: a.belongsTo('UserProfile', {
-          fields: ['profileOwner']  // Changed this line
-        }),
+        userProfileID: a.string(),  // Add this field
+        userProfile: a.belongsTo('UserProfile'),  // Simplified relationship
       })
       .authorization((allow) => [
         allow.ownerDefinedIn("profileOwner"),
