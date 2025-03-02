@@ -8,7 +8,7 @@ const schema = a
         email: a.string(),
         profileOwner: a.string(),
         adLocations: a.hasMany('AdLocation', {
-          references: ['userProfileId']  // Specify the reference field
+          references: 'userProfileId'  // Changed to string instead of array
         }),
       })
       .authorization((allow) => [
@@ -22,9 +22,9 @@ const schema = a
         location: a.string(),
         scanDate: a.datetime(),
         qrCode: a.string(),
-        userProfileId: a.string(),  // Reference field for the relationship
+        userProfileId: a.string(),
         userProfile: a.belongsTo('UserProfile', {
-          references: ['userProfileId']  // Specify the reference field
+          references: 'userProfileId'  // Changed to string instead of array
         }),
       })
       .authorization((allow) => [
