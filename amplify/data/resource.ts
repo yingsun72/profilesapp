@@ -8,10 +8,8 @@ const schema = a
         email: a.string(),
         profileOwner: a.string(),
         adLocations: a.hasMany('AdLocation', {
-          relationName: 'UserProfileAdLocations',  // Add this
-          indexName: 'byUserProfile',  // Add this
-          sourceField: 'profileOwner',  // Add this
-          targetField: 'profileOwner'   // Add this
+          indexName: 'byUserProfile',
+          fields: ['profileOwner']  // Changed this line
         }),
       })
       .authorization((allow) => [
@@ -26,9 +24,7 @@ const schema = a
         scanDate: a.datetime(),
         qrCode: a.string(),
         userProfile: a.belongsTo('UserProfile', {
-          relationName: 'UserProfileAdLocations',  // Add this
-          targetNames: ['profileOwner'],
-          targetFields: ['profileOwner']
+          fields: ['profileOwner']  // Changed this line
         }),
       })
       .authorization((allow) => [
