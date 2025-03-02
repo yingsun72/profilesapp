@@ -8,7 +8,7 @@ const schema = a
         email: a.string(),
         profileOwner: a.string(),
         adLocations: a.hasMany('AdLocation', {
-          references: 'userProfileId'  // Changed to string instead of array
+          references: 'userProfile'  // Changed to match the field name in AdLocation
         }),
       })
       .authorization((allow) => [
@@ -22,10 +22,7 @@ const schema = a
         location: a.string(),
         scanDate: a.datetime(),
         qrCode: a.string(),
-        userProfileId: a.string(),
-        userProfile: a.belongsTo('UserProfile', {
-          references: 'userProfileId'  // Changed to string instead of array
-        }),
+        userProfile: a.belongsTo('UserProfile'),  // Simplified belongsTo
       })
       .authorization((allow) => [
         allow.ownerDefinedIn("profileOwner"),
