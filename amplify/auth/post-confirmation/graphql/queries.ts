@@ -44,3 +44,17 @@ export const listUserProfiles = /* GraphQL */ `query ListUserProfiles(
   APITypes.ListUserProfilesQueryVariables,
   APITypes.ListUserProfilesQuery
 >;
+export const listAdLocations = /* GraphQL */ `
+  query ListAdLocations {
+    listAdLocations {
+      items {
+        id
+        profileOwner
+        objectId
+        location
+        scanDate
+        qrCode
+      }
+    }
+  }
+`;

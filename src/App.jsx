@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';  // Import your new component
+
 import {
   Button,
   Heading,
@@ -75,4 +78,15 @@ export default function App() {
       <Button onClick={signOut}>Sign Out</Button>
     </Flex>
   );
+
+  function App() {
+    return (
+      <Router>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          {/* Your other routes */}
+        </Routes>
+      </Router>
+    );
+  }
 }
